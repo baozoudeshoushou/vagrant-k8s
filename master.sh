@@ -13,7 +13,7 @@ sudo kubeadm init \
   --service-cidr=$SERVICE_CIDR \
   --pod-network-cidr=$POD_CIDR \
   --node-name=$NODENAME \
-  --ignore-preflight-errors=Swap
+  --ignore-preflight-errors=Swap \
   --image-repository=registry.aliyuncs.com/google_containers
   
 # Your Kubernetes control-plane has initialized successfully!
