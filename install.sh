@@ -47,10 +47,11 @@ sudo docker tag quay.io/coreos/flannel:v0.22.2-dirty-amd64 docker.io/flannel/fla
 # 设置 Docker 源
 cat > /etc/docker/daemon.json <<EOF
 {
-  "registry-mirrors" : [
-	"https://reg-mirror.qiniu.com",
-	"https://hub-mirror.c.163.com",
-	"https://mirror.ccs.tencentyun.com"
+    "registry-mirrors" : [
+        "https://hub-mirror.c.163.com​",
+        "https://mirror.baidubce.com​",
+        "https://dockerproxy.com",
+        "https://docker.nju.edu.cn"
   ]
 }
 EOF
