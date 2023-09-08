@@ -41,7 +41,7 @@ yum -y install docker-ce
 COREDNS_VERSION=1.8.0
 sudo docker pull registry.aliyuncs.com/google_containers/coredns:$COREDNS_VERSION
 sudo docker tag registry.aliyuncs.com/google_containers/coredns:$COREDNS_VERSION registry.aliyuncs.com/google_containers/coredns/coredns:v$COREDNS_VERSION
-docker load < flanneld-v0.22.2-dirty-amd64.docker
+docker load < /vagrant/flanneld-v0.22.2-dirty-amd64.docker
 sudo docker tag quay.io/coreos/flannel:v0.22.2-dirty-amd64 docker.io/flannel/flannel:v0.22.2
 
 # 设置 Docker 源
