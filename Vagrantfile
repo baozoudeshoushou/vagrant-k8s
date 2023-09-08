@@ -11,14 +11,14 @@ Vagrant.configure("2") do |config|
   end  
   config.vm.synced_folder ".", "/vagrant", type: "virtualbox"
   $num_instances = 3
-  $etcd_cluster = "node1=http://172.17.8.101:2380"
+  $etcd_cluster = "node1=http://192.168.31.111:2380"
   (1..$num_instances).each do |i|
     config.vm.define "node#{i}" do |node|
       node.vm.box = "centos/7"
       node.vbguest.installer_options = { allow_kernel_upgrade: true }
       node.vm.box_version = "1804.02"
       node.vm.hostname = "node#{i}"
-      ip = "172.17.8.#{i+100}"
+      ip = "192.168.31.#{i+110}"
       node.vm.network "public_network", ip: ip
       node.vm.provider "virtualbox" do |vb|
         vb.memory = "4096"
