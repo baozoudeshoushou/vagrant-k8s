@@ -34,14 +34,6 @@ yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/d
 # Install Docker
 yum -y install docker-ce
 
-# preload coredns for special handling
-# 这里应该放在 common
-COREDNS_VERSION=1.8.0
-sudo docker pull registry.aliyuncs.com/google_containers/coredns:$COREDNS_VERSION
-sudo docker tag registry.aliyuncs.com/google_containers/coredns:$COREDNS_VERSION registry.aliyuncs.com/google_containers/coredns/coredns:v$COREDNS_VERSION
-docker load < /vagrant/flanneld-v0.22.2-dirty-amd64.docker
-sudo docker tag quay.io/coreos/flannel:v0.22.2-dirty-amd64 docker.io/flannel/flannel:v0.22.2
-
 # 设置 Docker 源
 cat > /etc/docker/daemon.json <<EOF
 {
@@ -62,6 +54,14 @@ echo 'enable docker'
 systemctl daemon-reload
 systemctl enable docker
 systemctl start docker
+
+# preload coredns for special handling
+# 这里应该放在 common
+COREDNS_VERSION=1.8.0
+sudo docker pull registry.aliyuncs.com/google_containers/coredns:$COREDNS_VERSION
+sudo docker tag registry.aliyuncs.com/google_containers/coredns:$COREDNS_VERSION registry.aliyuncs.com/google_containers/coredns/coredns:v$COREDNS_VERSION
+docker load < /vagrant/flanneld-v0.22.2-dirty-amd64.docker
+sudo docker tag quay.io/coreos/flannel:v0.22.2-dirty-amd64 docker.io/flannel/flannel:v0.22.2
 
 # 设置 K8S 镜像
 # Google：baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch
