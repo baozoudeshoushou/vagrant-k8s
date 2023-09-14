@@ -23,3 +23,21 @@ spec:
 # 更新 Deployment： kubectl edit deployment/nginx-deployment
 # 更新 Deployment： kubectl set image deployment/nginx-deployment nginx=nginx:1.16.1
 # 查看上线状态： kubectl rollout status deployment/nginx-deployment
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    app: nginx
+  type: NodePort # 映射到物理机
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      # nodePort: 30000
+
+# 更新 svc kubectl edit svc/nginx-service
