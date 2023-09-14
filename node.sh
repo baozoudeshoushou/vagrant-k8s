@@ -1,6 +1,9 @@
 #! /bin/bash
 
-/bin/bash /vagrant/configs/join.sh -v
+sudo /bin/bash /vagrant/configs/join.sh -v
+
+cp /vagrant/configs/config /etc/kubernetes/admin.conf
+export KUBECONFIG=/etc/kubernetes/admin.conf
 
 sudo -i -u vagrant bash << EOF
 mkdir -p /home/vagrant/.kube
